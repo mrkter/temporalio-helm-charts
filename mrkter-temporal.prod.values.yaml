@@ -1,0 +1,61 @@
+server: 
+  replicaCount: 1
+  config:
+    persistence:
+      plugin: postgres
+      default:
+        driver: sql
+        sql:
+          user: admin
+          password: mqc9EVavh5wxZH6K
+          host: "timescale"
+          port: 5432
+          database: temporal
+      visibility:
+        driver: sql
+        sql:
+          user: admin
+          password: mqc9EVavh5wxZH6K
+          host: "timescale"
+          port: 5432
+          database: temporal
+  additionalEnv:
+    - name: SQL_TLS
+      value: "true"
+    - name: SQL_TLS_DISABLE_HOST_VERIFICATION
+      value: "true"
+schema:
+  setup:
+    enabled: true
+    backoffLimit: 100
+  update:
+    enabled: true
+    backoffLimit: 100
+  resources: {}
+  containerSecurityContext: {}
+  securityContext:
+    fsGroup: 0
+    runAsUser: 0
+
+web:
+  additionalEnv:
+    - name: SQL_TLS
+      value: "true"
+    - name: SQL_TLS_DISABLE_HOST_VERIFICATION
+      value: "true"
+
+cassandra:
+  enabled: false
+prometheus:
+  enabled: false
+grafana:
+  enabled: false
+elasticsearch:
+  enabled: false
+
+  # --set server.config.persistence.default.sql.user=postgresql_user \
+  # --set server.config.persistence.default.sql.password=postgresql_password \
+  # --set server.config.persistence.default.sql.host=postgresql_host \
+  # --set server.config.persistence.visibility.sql.user=postgresql_user \
+  # --set server.config.persistence.visibility.sql.password=postgresql_password \
+  # --set server.config.persistence.visibility.sql.host=postgresql_host

@@ -47,7 +47,7 @@ data:
           {{- end }}
           {{- if eq (include "temporal.persistence.driver" (list $ "default")) "sql" }}
           sql:
-            pluginName: "{{ include "temporal.persistence.sql.driver" (list $ "default") }}"
+            pluginName: postgres
             driverName: "{{ include "temporal.persistence.sql.driver" (list $ "default") }}"
             databaseName: "{{ $.Values.server.config.persistence.default.sql.database }}"
             connectAddr: "{{ include "temporal.persistence.sql.host" (list $ "default") }}:{{ include "temporal.persistence.sql.port" (list $ "default") }}"
@@ -70,7 +70,7 @@ data:
           {{- end }}
           {{- if eq (include "temporal.persistence.driver" (list $ "default")) "sql" }}
           sql:
-            pluginName: "{{ include "temporal.persistence.sql.driver" (list $ "visibility") }}"
+            pluginName: postgres
             driverName: "{{ include "temporal.persistence.sql.driver" (list $ "visibility") }}"
             databaseName: "{{ $.Values.server.config.persistence.visibility.sql.database }}"
             connectAddr: "{{ include "temporal.persistence.sql.host" (list $ "visibility") }}:{{ include "temporal.persistence.sql.port" (list $ "visibility") }}"
